@@ -11,6 +11,10 @@
     "ios": {
       "supportsTablet": true
     },
+    "statusBar": {
+      "style": "light",
+      "hidden": true
+    },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",

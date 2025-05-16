@@ -13,17 +13,21 @@ export default function RootLayout() {
   });
 
   if (!loaded) {
-    // Async font loading only occurs in development.
     return null;
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme} >
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="DailyQuiz" options={{ headerShown: false }} />
+        <Stack.Screen name="SignPage" options={{ headerShown: false }} />
+        <Stack.Screen name="Profile" options={{ headerShown: false }} />
+        <Stack.Screen name="FriendList" options={{ headerShown: false }} />
+        <Stack.Screen name="Shop" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
-      <StatusBar style="auto" />
+      <StatusBar hidden={true} />
     </ThemeProvider>
   );
 }
