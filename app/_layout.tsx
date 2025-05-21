@@ -24,7 +24,6 @@ export default function RootLayout() {
         <Stack.Screen name="SignPage" options={{ headerShown: false }} />
         <Stack.Screen name="Profile" options={{ headerShown: false }} />
         <Stack.Screen name="FriendList" options={{ headerShown: false }} />
-        <Stack.Screen name="Shop" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar hidden={true} />

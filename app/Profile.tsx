@@ -1,6 +1,6 @@
 import { ThemedView } from '@/components/ThemedView';
 import { useRouter } from 'expo-router';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export const options = {
@@ -8,25 +8,11 @@ export const options = {
 };
 
 export default function Profile() {
-  const [userData, setUserData] = useState<any | null>(null);
   const router = useRouter();
 
   const handleBack = () => {
     router.push('/(tabs)');
   };
-
-  useEffect(() => {
-    // 模擬載入資料的過程
-    const fetchData = () => {
-      // 這裡假設資料是從某個地方來的，這裡使用假資料
-      setUserData({
-        name: 'Cynthia',
-        personal_score: 85,
-      });
-    };
-    
-    fetchData();
-  }, []);
 
   return (
     <ThemedView style={styles.container}>
@@ -37,6 +23,21 @@ export default function Profile() {
         resizeMode="cover"
       />
 
+      {/* 大頭貼和大頭匡容器 */}
+      <View style={styles.avatarContainer}>
+        <Image
+          source={require('@/assets/images/大頭貼.png')}
+          style={styles.avatarImage}
+          resizeMode="cover"
+        />
+      </View>
+
+      {/* 姓名和分數顯示 */}
+      <View style={styles.infoContainer}>
+        <Text style={styles.nameText}>ID：Cynthia</Text>
+        <Text style={styles.scoreText}>FDS 分數：85</Text>
+      </View>
+
       {/* 返回圖片 */}
       <TouchableOpacity style={styles.circleContainer} onPress={handleBack}>
         <Image
@@ -44,16 +45,6 @@ export default function Profile() {
           style={styles.circleImage}
         />
       </TouchableOpacity>
-
-      {/* 顯示姓名與分數 */}
-      {userData ? (
-        <View style={styles.infoBox}>
-          <Text style={styles.labelText}>姓名：{userData.name}</Text>
-          <Text style={styles.labelText}>分數：{userData.personal_score}</Text>
-        </View>
-      ) : (
-        <Text style={styles.scoreText}>正在載入資料...</Text>
-      )}
     </ThemedView>
   );
 }
@@ -65,6 +56,36 @@ const styles = StyleSheet.create({
   fullImage: {
     width: '100%',
     height: '100%',
+  },
+  avatarContainer: {
+    position: 'absolute',
+    top: 120,
+    left: 120,
+    width: 165,
+    height: 165,
+  },
+  avatarImage: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    //borderRadius: 75,
+  },
+  infoContainer: {
+    position: 'absolute',
+    top: 330,
+    left: 75,
+    alignItems: 'left',
+  },
+  nameText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#000000',
+    marginBottom: 10,
+  },
+  scoreText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#000000',
   },
   circleContainer: {
     position: 'absolute',
@@ -78,33 +99,5 @@ const styles = StyleSheet.create({
     width: '80%',
     height: '80%',
     resizeMode: 'cover',
-  },
-  infoBox: {
-    position: 'absolute',
-    alignItems: 'flex-start',
-    top: 250, // 可視需求微調位置
-    left: 60,
-    fontSize: 17,
-    fontWeight: 'bold',
-    color: 'black', // 黑色文字
-  },
-  labelText: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: 'black',
-    marginVertical: 4,
-    textAlign: 'center',
-  },
-  scoreText: {
-    position: 'absolute',
-    top: 160,
-    alignSelf: 'center',
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#FFD700',
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 12,
   },
 });

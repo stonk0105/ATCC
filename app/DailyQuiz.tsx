@@ -8,52 +8,71 @@ export const options = {
 };
 
 export default function DailyQuiz() {
-  const [result, setResult] = useState(''); // 用來顯示結果的狀態
+  const [showResult, setShowResult] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false);
   const router = useRouter();
 
   const handleBack = () => {
     router.push('/(tabs)');
   };
 
-  const handleAnswer = (answer) => {
+  const handleAnswer = (answer: string) => {
     if (answer === 'phishing') {
-      setResult('答對了'); // 網路釣魚的答案是對的
+      setIsCorrect(true);
     } else {
-      setResult('答錯了'); // 正常郵件的答案是錯的
+      setIsCorrect(false);
     }
+    setShowResult(true);
   };
 
   return (
     <ThemedView style={styles.container}>
       {/* 測驗圖片 */}
-      <Image
-        source={require('@/assets/images/小測驗.png')} // 換成你的測驗圖片
-        style={styles.fullImage}
-        resizeMode="cover"
-      />
+      {!showResult && (
+        <Image
+          source={require('@/assets/images/小測驗.png')}
+          style={styles.fullImage}
+          resizeMode="cover"
+        />
+      )}
 
       {/* 返回圖片 */}
       <TouchableOpacity style={styles.circleContainer} onPress={handleBack}>
         <Image
-          source={require('@/assets/images/返回.png')} // 換成你自己的圖片
+          source={require('@/assets/images/返回.png')}
           style={styles.circleImage}
         />
       </TouchableOpacity>
 
       {/* 顯示測驗結果 */}
-      <View style={styles.resultContainer}>
-        <Text style={styles.resultText}>{result}</Text>
-      </View>
+      {showResult && (
+        <View style={styles.resultContainer}>
+          <Text style={styles.resultText}>
+            {isCorrect ? '答對了！' : '答錯了！'}
+          </Text>
+          <TouchableOpacity style={styles.backButton} onPress={handleBack}>
+            <Text style={styles.backButtonText}>返回</Text>
+          </TouchableOpacity>
+        </View>
+      )}
 
       {/* 按鈕區域 */}
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => handleAnswer('phishing')}>
-          <Text style={styles.buttonText}>網路釣魚</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => handleAnswer('normal')}>
-          <Text style={styles.buttonText}>正常郵件</Text>
-        </TouchableOpacity>
-      </View>
+      {!showResult && (
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity 
+            style={styles.button} 
+            onPress={() => handleAnswer('phishing')}
+          >
+            <Text style={styles.buttonText}>網路釣魚</Text>
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={styles.button} 
+            onPress={() => handleAnswer('normal')}
+          >
+            <Text style={styles.buttonText}>正常郵件</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </ThemedView>
   );
 }
@@ -85,13 +104,31 @@ const styles = StyleSheet.create({
   resultContainer: {
     position: 'absolute',
     width: '100%',
+    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    bottom: '20%',
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
   },
   resultText: {
-    fontSize: 24,
-    color: 'black',
+    fontSize: 36,
+    fontWeight: 'bold',
+    color: '#000000',
+    marginBottom: 30,
+  },
+  backButton: {
+    backgroundColor: '#4CAF50',
+    paddingVertical: 15,
+    paddingHorizontal: 40,
+    borderRadius: 25,
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+  },
+  backButtonText: {
+    color: 'white',
+    fontSize: 20,
     fontWeight: 'bold',
   },
   buttonContainer: {

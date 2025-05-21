@@ -14,9 +14,6 @@ export default function HomeScreen() {
   const SignPress = () => {
     router.push('/SignPage');
   };
-  const ShopPress = () => {
-    router.push('/Shop');
-  };
   const ProfilePress = () => {
     router.push('/Profile');
   };
@@ -35,25 +32,17 @@ export default function HomeScreen() {
         isMuted
       />
       
-
       <TouchableOpacity onPress={FriendPress} style={styles.FriendButton}>
         <Image
           source={require('@/assets/images/好友列表Icon.png')}
-          style={styles.avatarImage}
+          style={styles.iconImage}
         />
       </TouchableOpacity>
 
       <TouchableOpacity onPress={SignPress} style={styles.SignButton}>
         <Image
           source={require('@/assets/images/簽到表.png')}
-          style={styles.avatarImage}
-        />
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={ShopPress} style={styles.ShopButton}>
-        <Image
-          source={require('@/assets/images/商店.png')}
-          style={styles.avatarImage}
+          style={styles.iconImage}
         />
       </TouchableOpacity>
 
@@ -90,38 +79,37 @@ const styles = StyleSheet.create({
   FriendButton: {
     position: 'absolute',
     top: 80,
-    right: 100,
+    right: 110,
+    width: 75,
+    height: 75,
   },
   SignButton: {
     position: 'absolute',
     top: 80,
     right: 30,
+    width: 75,
+    height: 75,
   },
-  ShopButton: {
-    position: 'absolute',
-    bottom: 110,
-    right: 30,
+  iconImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 40,
+    borderWidth: 2,
+    borderColor: 'white',
   },
   Profile_frame: {
     position: 'absolute',
     top: 50,
     left: 0,
-    width: 150,
-    height: 150,
+    width: 170,
+    height: 170,
   },
   Profile: {
     position: 'absolute',
-    top: 44,
-    left: 14.5,
-    width: 74.5,
-    height: 74.5,
-  },
-  avatarImage: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    borderWidth: 2,
-    borderColor: 'white',
+    top: 47,
+    left: 17,
+    width: 85,
+    height: 85,
   },
   successText: {
     position: 'absolute',
@@ -137,13 +125,13 @@ const styles = StyleSheet.create({
   },
   QuizButton: {
     position: 'absolute',
-    bottom: 120,
+    bottom: 50,
     alignSelf: 'center',
     backgroundColor: '#4CAF50',
-    paddingVertical: 12,
-    paddingHorizontal: 24,
+    paddingVertical: 15,
+    paddingHorizontal: 30,
     borderRadius: 25,
-    elevation: 5, // Android 陰影效果
+    elevation: 5,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
@@ -151,7 +139,7 @@ const styles = StyleSheet.create({
   },
   quizText: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
   },
 });
