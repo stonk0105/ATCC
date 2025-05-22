@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
   },
   circleContainer: {
     position: 'absolute',
-    bottom: '21%', // 調整上下位置
-    right: '0%', // 調整左右位置
+    bottom: 40, // 調整上下位置
+    right: 20, // 調整左右位置
     width: 100,
     height: 100,
     overflow: 'hidden',

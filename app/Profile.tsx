@@ -18,7 +18,7 @@ export default function Profile() {
     <ThemedView style={styles.container}>
       {/* 背景全版圖片 */}
       <Image
-        source={require('@/assets/images/好友列表.png')}
+        source={require('@/assets/images/個人資料.png')}
         style={styles.fullImage}
         resizeMode="cover"
       />

@@ -24,7 +24,7 @@ export default function HomeScreen() {
   return (
     <ThemedView style={styles.container}>
       <Video
-        source={require('@/assets/images/Comp 1_2.mp4')}
+        source={require('@/assets/images/family.mp4')}
         style={styles.fullImage}
         resizeMode={ResizeMode.COVER}
         isLooping
